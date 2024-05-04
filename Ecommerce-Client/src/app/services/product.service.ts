@@ -9,6 +9,6 @@ export class ProductService {
   constructor(private http:HttpClient) { }
 
   getProducts(){
-    return this.http.get<{products:any}>("https://localhost:7018/api/Product/all")
+    return this.http.get<{products:any}>("http://localhost:5087/api/Product/all")
   }
 }

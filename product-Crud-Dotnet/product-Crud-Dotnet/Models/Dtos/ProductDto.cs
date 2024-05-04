@@ -2,7 +2,7 @@
 
 namespace product_Crud_Dotnet.Models
 {
-    public class AddProduct
+    public class ProductDto
     {
         [Required(ErrorMessage = "Product Name is Required")]
         public string Name { get; set; } = string.Empty;

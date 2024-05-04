@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using product_Crud_Dotnet.Contracts;
 using product_Crud_Dotnet.Models;
 
 namespace product_Crud_Dotnet.Controllers
@@ -9,90 +8,87 @@ namespace product_Crud_Dotnet.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        private static List<Product> products = new() 
-        {
-            new()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Laptop",
-                Description = "Lenovo",
-                Price= 1000,
-                ImageUrl = "https://cdn.pixabay.com/photo/2021/11/05/11/08/laptop-6771039_1280.jpg"
-            }
-        };
+        private readonly IProductService _productService;
 
-        //Get all
+        public ProductController(IProductService productService)
+            => _productService = productService;
 
+        /// <summary>
+        /// Get all products
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("all")]
-        public ActionResult getProducts()
+        public async Task<ActionResult> GetProducts()
         {
+            var products = await _productService.GetAllProducts();
+
             return Ok(products);
         }
 
-        //GET ONE
+        /// <summary>
+        /// Get single product by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id:guid}")]
-        public ActionResult getaProducts(Guid id)
+        public async Task<ActionResult> GetSingleProduct(Guid id)
         {
-            var product = products.Find(product => product.Id == id);
-            if(product == null)
-            {
-                return NotFound("Product Not Found");
-            }
+            var product = await _productService.GetProductById(id);
 
-            return Ok(product);
+            return product == null ? NotFound("Product Not Found") : Ok(product);
         }
 
-        //ADD NEW PRODUCT
-
+        /// <summary>
+        /// Add product
+        /// </summary>
+        /// <param name="producDto"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult addProduct(AddProduct newProduct)
+        public async Task<ActionResult> AddProduct([FromBody] ProductDto producDto)
         {
-            var product = new Product()
-            {
-                Id = Guid.NewGuid(),
-                Name = newProduct.Name,
-                Description = newProduct.Description,
-                Price = newProduct.Price,
-                ImageUrl = newProduct.ImageUrl
-            };
+            var product = await _productService.AddProduct(producDto);
 
-            products.Add(product);
-            return Created($"https://localhost:7069/api/Product/{product.Id}", "Product created successfully");
+            return CreatedAtAction(nameof(GetSingleProduct), new { id = product.Id }, product);
         }
 
-        //DELETE PRODUCT
-
+        /// <summary>
+        /// Delete a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id:guid}")]
-        public ActionResult deleteProduct(Guid id)
+        public async Task<ActionResult> DeleteProduct(Guid id)
         {
-            var product = products.Find(product => product.Id == id);
+            var product = await _productService.GetProductById(id);
 
-            if(product == null)
+            if (product == null)
             {
                 return NotFound("Product Not Found");
             }
 
-            products.Remove(product);
+            await _productService.DeleteProduct(product);
 
             return NoContent();
         }
 
-        //UPDATE PRODUCT
+        /// <summary>
+        /// Update a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="productDto"></param>
+        /// <returns></returns>
         [HttpPut("{id:guid}")]
 
-        public ActionResult updateProduct(Guid id, AddProduct Updatedproduct)
+        public async Task<ActionResult> UpdateProduct(Guid id, ProductDto productDto)
         {
-            var product = products.Find(product => product.Id == id);
+            var product = await _productService.GetProductById(id);
 
-            if(product == null)
+            if (product == null)
             {
                 return NotFound("Product Not Found");
             }
 
-            product.Price = Updatedproduct.Price;
-            product.Name = Updatedproduct.Name;
-            product.Description = Updatedproduct.Description;
-            product.ImageUrl = Updatedproduct.ImageUrl;
+            await _productService.UpdateProduct(product, productDto);
 
             return NoContent();
         }
