@@ -16,7 +16,8 @@ namespace product_Crud_Dotnet.Controllers
                 Id = Guid.NewGuid(),
                 Name = "Laptop",
                 Description = "Lenovo",
-                Price= 1000
+                Price= 1000,
+                ImageUrl = "https://cdn.pixabay.com/photo/2021/11/05/11/08/laptop-6771039_1280.jpg"
             }
         };
 
@@ -51,7 +52,8 @@ namespace product_Crud_Dotnet.Controllers
                 Id = Guid.NewGuid(),
                 Name = newProduct.Name,
                 Description = newProduct.Description,
-                Price = newProduct.Price
+                Price = newProduct.Price,
+                ImageUrl = newProduct.ImageUrl
             };
 
             products.Add(product);
@@ -90,6 +92,7 @@ namespace product_Crud_Dotnet.Controllers
             product.Price = Updatedproduct.Price;
             product.Name = Updatedproduct.Name;
             product.Description = Updatedproduct.Description;
+            product.ImageUrl = Updatedproduct.ImageUrl;
 
             return NoContent();
         }
