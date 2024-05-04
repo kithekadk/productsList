@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace product_Crud_Dotnet.Controllers
@@ -8,6 +9,14 @@ namespace product_Crud_Dotnet.Controllers
     public class ErrorController : ControllerBase
     {
         [Route("")]
-        public IActionResult HandleError() => Problem();
+        public IActionResult HandleError()
+        {
+            var exceptionHandlerFeature = HttpContext
+                .Features.Get<IExceptionHandlerFeature>()!;
+
+            return Problem(
+                detail: exceptionHandlerFeature.Error.StackTrace,
+                title: exceptionHandlerFeature.Error.Message);
+        }
     }
 }

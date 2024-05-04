@@ -78,7 +78,6 @@ namespace product_Crud_Dotnet.Controllers
         /// <param name="productDto"></param>
         /// <returns></returns>
         [HttpPut("{id:guid}")]
-
         public async Task<ActionResult> UpdateProduct(Guid id, ProductDto productDto)
         {
             var product = await _productService.GetProductById(id);

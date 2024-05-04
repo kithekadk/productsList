@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "product-Crud-Dotnet", "product-Crud-Dotnet\product-Crud-Dotnet.csproj", "{049AFB21-0ACC-4595-A936-04C147A64BCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "product-Crud-Xunit", "product-Crud-Xunit\product-Crud-Xunit.csproj", "{A484ADE3-148C-4336-B999-54B69B9AFCE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{049AFB21-0ACC-4595-A936-04C147A64BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{049AFB21-0ACC-4595-A936-04C147A64BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{049AFB21-0ACC-4595-A936-04C147A64BCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A484ADE3-148C-4336-B999-54B69B9AFCE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A484ADE3-148C-4336-B999-54B69B9AFCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A484ADE3-148C-4336-B999-54B69B9AFCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A484ADE3-148C-4336-B999-54B69B9AFCE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
