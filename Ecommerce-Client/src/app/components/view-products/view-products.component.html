@@ -8,10 +8,10 @@
         <div  class="flex justify-center gap-4 flex-wrap pt-4">
             <div *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: page }" class="text-center w-[20vw] p-[2px] bg-blue-50">
                 <div class="max-h-[200px] bg-white min-h-[200px] flex items-center mb-2 overflow-hidden">
-                    <img src="{{product.images[0]}}" class="w-auto h-[98%]" alt="" >
+                    <img src="{{product.imageUrl}}" class="w-auto h-[98%]" alt="" >
                 </div>
                 <div class="mb-2">
-                    <div class="p-4 mt-2 font-bold ">{{product.title}}</div>
+                    <div class="p-4 mt-2 font-bold ">{{product.name}}</div>
                     <div>Ksh. {{product.price}}</div>
                     <!-- <button class="w-[100%] border border-white border-[2px] py-2 hover:bg-blue-400 rounded-2xl hover:border-none">Add to Cart</button> -->
                 </div>
