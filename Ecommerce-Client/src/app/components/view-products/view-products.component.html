@@ -1,12 +1,12 @@
 <div class="viewproductsmain w-[100vw]">
     <div class="w-[100%] flex justify-center pt-8">
-        <h1 class="text-[30px] font-semibold">Our Products</h1>
+        <h1 class="products text-[30px] font-semibold ">Our Products</h1>
     </div>
 
     <!-- Listing products-->
     <div>
         <div  class="flex justify-center gap-4 flex-wrap pt-4">
-            <div *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: page }" class="text-center w-[20vw] p-[2px] bg-blue-50">
+            <div *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: page }" class="text-center min-w-[300px] w-[20vw] p-[2px] bg-blue-50">
                 <div class="max-h-[200px] bg-white min-h-[200px] flex items-center mb-2 overflow-hidden">
                     <img src="{{product.imageUrl}}" class="w-auto h-[98%]" alt="" >
                 </div>
