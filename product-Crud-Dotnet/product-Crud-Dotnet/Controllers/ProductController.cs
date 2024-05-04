@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Concurrent;
+using Microsoft.AspNetCore.Mvc;
 using product_Crud_Dotnet.Contracts;
 using product_Crud_Dotnet.Models;
 
@@ -23,6 +24,46 @@ namespace product_Crud_Dotnet.Controllers
             var products = await _productService.GetAllProducts();
 
             return Ok(products);
+        }
+
+        /// <summary>
+        /// Update a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="productDto"></param>
+        /// <returns></returns>
+        [HttpGet("factorial")]
+        public async Task<ActionResult> GetFactorial()
+        {
+            var products = (await _productService.GetAllProducts())
+                .Select((product, index) => new ProductFactorialDto
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    ImageUrl = product.ImageUrl,
+                    Price = product.Price,
+                    Row = index
+                });
+            var productFactorials = new ConcurrentBag<ProductFactorialDto>();
+
+            await Parallel.ForEachAsync(products, async (product, cancellationToken) =>
+            {
+                if (!cancellationToken.IsCancellationRequested)
+                {
+                    var factorial = 1;
+
+                    for (int i = 1; i <= product.Row; i++)
+                    {
+                        factorial = factorial * i;
+                    }
+
+                    product.Factorial = factorial;
+
+                    productFactorials.Add(product);
+                }
+            });
+
+            return Ok(productFactorials);
         }
 
         /// <summary>
