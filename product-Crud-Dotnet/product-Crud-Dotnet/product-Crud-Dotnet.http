@@ -1,6 +1,15 @@
 @product_Crud_Dotnet_HostAddress = http://localhost:5087
 
-GET {{product_Crud_Dotnet_HostAddress}}/weatherforecast/
+GET {{product_Crud_Dotnet_HostAddress}}/api/Product/all
 Accept: application/json
 
 ###
+POST {{product_Crud_Dotnet_HostAddress}}/api/Product
+Content-Type: application/json
+
+{
+    "Name": "Laptop",
+    "Description": "HP",
+    "Price": 50000,
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/04/17/17/43/lenovo-thinkpad-x61-tablet-1335138_1280.jpg"
+}

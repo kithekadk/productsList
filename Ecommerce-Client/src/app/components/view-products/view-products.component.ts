@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Product } from '../../Interfaces/Product';
 
 @Component({
   selector: 'app-view-products',
@@ -12,7 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 })
 export class ViewProductsComponent {
 
-  products:any;
+  products:Product[]=[];
 
   page: number = 1;
 
@@ -25,7 +26,7 @@ export class ViewProductsComponent {
     this.productService.getProducts().subscribe(res=>{
       console.log(res);
       
-      this.products = res.products
+      this.products = res
     })
   }
 }
