@@ -9,8 +9,6 @@ Run database migrations using `dotnet ef database update`
 
 Launch the API using `dotnet run --launch-profile http`
 
-Run xunit tests with `dotnet test product-Crud-Xunit`
-
 ## Running the Client
 
 Open new terminal

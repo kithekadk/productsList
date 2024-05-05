@@ -53,9 +53,16 @@ export class AddProductComponent{
     
   }
   createProduct(){    
-    this.productService.createProduct(this.createProductForm.value)
+    this.productService.createProduct(this.createProductForm.value).subscribe(res=>{
 
-    this.createProductForm.reset()
+      this.createProductForm.reset()
+      this.success = true
+    })
+
+    
+    setTimeout(() => {
+      this.success = false
+    }, 2000);
   }
 
   navigate(){
