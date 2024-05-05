@@ -11,8 +11,18 @@ Run xunit tests with `dotnet test product-Crud-Xunit`
 
 ## Running the Client
 
-Navigate to the client flder with `cd Ecommerce-Client`
+Open new terminal
+
+Navigate to the client folder with `cd Ecommerce-Client`
 
 Install dependencies using `npm install`
 
 Launch the client using `ng serve -o`
+
+## Running the Unit Tests
+
+Open new terminal and close the server
+
+navigate to the directory using `cd product-Crud-Dotnet/product-Crud-Xunit`
+
+Run xunit tests with `dotnet test`
