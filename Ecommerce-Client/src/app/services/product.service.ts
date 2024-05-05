@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from '../Interfaces/Product';
+import { Product, ProductWithFactorial } from '../Interfaces/Product';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +13,11 @@ export class ProductService {
     return this.http.get<Product[]>("http://localhost:5087/api/Product/all")
   }
 
-  createProduct(product:Product){
-    return this.http.post<Product>("http://localhost:5087/api/Product", product).subscribe(res=>{
-      console.log(res);
+  getFactorial(){
+    return this.http.get<ProductWithFactorial[]>("http://localhost:5087/api/Product/factorial")
+  }
 
-      this.getProducts()
-      
-    })
+  createProduct(product:Product){
+    return this.http.post<Product>("http://localhost:5087/api/Product", product)
   }
 }

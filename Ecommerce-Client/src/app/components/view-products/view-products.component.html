@@ -1,12 +1,15 @@
 <div class="viewproductsmain w-[100vw]">
-    <div class="w-[100%] flex justify-center pt-8">
-        <h1 class="text-[30px] font-semibold">Our Products</h1>
+    <div class="w-[100%] flex justify-around items-center pt-8">
+        <h1 class="products text-[30px] font-semibold" #moreproducts >Our Products</h1>
+        <div>
+            <button class="py-2 px-4 bg-blue-500 text-white rounded-2xl" (click)="getFactorial()">Get Factorial</button>
+        </div>
     </div>
 
     <!-- Listing products-->
     <div>
-        <div  class="flex justify-center gap-4 flex-wrap pt-4">
-            <div *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: page }" class="text-center w-[20vw] p-[2px] bg-blue-50">
+        <div *ngIf="!gettingFactorial" class="flex justify-center gap-4 flex-wrap pt-4">
+            <div *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: page }" class="text-center min-w-[300px] w-[20vw] p-[2px] bg-blue-50">
                 <div class="max-h-[200px] bg-white min-h-[200px] flex items-center mb-2 overflow-hidden">
                     <img src="{{product.imageUrl}}" class="w-auto h-[98%]" alt="" >
                 </div>
@@ -18,7 +21,24 @@
             </div>
 
         </div>
-        <div class="flex justify-center p-8">
+        
+        <!-- Get factorials and display -->
+        <div *ngIf="gettingFactorial" class="flex justify-center gap-4 flex-wrap pt-4">
+            <div *ngFor="let product of productswithFactorial | paginate: { itemsPerPage: 8, currentPage: page }" class="text-center min-w-[300px] w-[20vw] p-[2px] bg-blue-50">
+                <div class="max-h-[200px] bg-white min-h-[200px] flex items-center mb-2 overflow-hidden">
+                    <img src="{{product.imageUrl}}" class="w-auto h-[98%]" alt="" >
+                </div>
+                <div class="mb-2">
+                    <div class="p-4 mt-2 font-bold ">{{product.name}}</div>
+                    <div class="flex justify-around">
+                        <div class="p-2">Ksh. {{product.price}}</div>
+                        <div class="p-2 font-semibold bg-blue-300 rounded-2xl">Factorial: {{product.factorial}}</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div  class="flex justify-center p-8">
             <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
     </div>

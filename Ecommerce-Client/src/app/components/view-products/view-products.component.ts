@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { Product } from '../../Interfaces/Product';
+import { Product, ProductWithFactorial } from '../../Interfaces/Product';
 
 @Component({
   selector: 'app-view-products',
@@ -13,9 +13,12 @@ import { Product } from '../../Interfaces/Product';
 })
 export class ViewProductsComponent {
 
-  products:Product[]=[];
+  products: Product[]=[];
+  productswithFactorial: ProductWithFactorial[]=[]
 
   page: number = 1;
+
+  gettingFactorial:boolean = false
 
   constructor(private productService:ProductService){
     this.getProducts()
@@ -23,10 +26,17 @@ export class ViewProductsComponent {
 
 
   getProducts(){
+    this.gettingFactorial = false
     this.productService.getProducts().subscribe(res=>{
-      console.log(res);
-      
       this.products = res
+    })
+  }
+
+  getFactorial(){
+    this.gettingFactorial = true
+    this.productService.getFactorial().subscribe(res=>{
+
+      this.productswithFactorial = res
     })
   }
 }
