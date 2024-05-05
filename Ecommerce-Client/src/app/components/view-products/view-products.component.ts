@@ -28,8 +28,6 @@ export class ViewProductsComponent {
   getProducts(){
     this.gettingFactorial = false
     this.productService.getProducts().subscribe(res=>{
-      console.log(res);
-      
       this.products = res
     })
   }
@@ -37,8 +35,7 @@ export class ViewProductsComponent {
   getFactorial(){
     this.gettingFactorial = true
     this.productService.getFactorial().subscribe(res=>{
-      console.log(res);
-      
+
       this.productswithFactorial = res
     })
   }

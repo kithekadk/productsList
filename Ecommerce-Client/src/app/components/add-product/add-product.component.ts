@@ -45,8 +45,6 @@ export class AddProductComponent{
 
         this.imageUrl = res.url
 
-        console.log(this.imageUrl);
-
         this.createProductForm.patchValue({'imageUrl': this.imageUrl})
       })
 
@@ -55,9 +53,7 @@ export class AddProductComponent{
     
   }
   createProduct(){    
-    this.productService.createProduct(this.createProductForm.value).subscribe(res=>{
-      console.log(res);
-    })
+    this.productService.createProduct(this.createProductForm.value)
 
     this.createProductForm.reset()
   }
