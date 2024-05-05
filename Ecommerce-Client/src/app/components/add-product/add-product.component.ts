@@ -15,6 +15,8 @@ export class AddProductComponent{
   createProductForm!: FormGroup;
   imageUrl = ""
   clicked = false
+  error = false
+  success = false
 
   constructor(private fb:FormBuilder, private productService:ProductService, private router: Router){
     this.createProductForm = this.fb.group({
@@ -44,7 +46,6 @@ export class AddProductComponent{
         this.imageUrl = res.url
 
         console.log(this.imageUrl);
-        
 
         this.createProductForm.patchValue({'imageUrl': this.imageUrl})
       })
@@ -54,13 +55,14 @@ export class AddProductComponent{
     
   }
   createProduct(){    
-    this.productService.createProduct(this.createProductForm.value)
+    this.productService.createProduct(this.createProductForm.value).subscribe(res=>{
+      console.log(res);
+    })
+
     this.createProductForm.reset()
   }
 
   navigate(){
-
-  window.location.reload()
-  
-}
+    window.location.reload()
+  }
 }
