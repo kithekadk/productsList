@@ -1,3 +1,5 @@
+Install dotnet sdk using `https://dotnet.microsoft.com/en-us/download`
+
 Install ef core tools needed for database migrations using `dotnet tool install --global dotnet-ef`
 
 ## Launching the API
