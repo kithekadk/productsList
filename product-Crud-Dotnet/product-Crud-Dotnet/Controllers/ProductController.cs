@@ -63,7 +63,7 @@ namespace product_Crud_Dotnet.Controllers
                 }
             });
 
-            return Ok(productFactorials);
+            return Ok(productFactorials.OrderBy(product => product.Row));
         }
 
         /// <summary>
