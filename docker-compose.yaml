@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+
+  product-list-api:
+    image: ${DOCKER_REGISTRY-}product-list-api
+    build:
+      context: ./product-Crud-Dotnet
+      target: publish
+    container_name: product-list-api
+    ports:
+      - 9100:8080
+  
+  product-list-web:
+    image: ${DOCKER_REGISTRY-}product-list-web
+    build:
+      context: ./Ecommerce-Client
+    container_name: product-list-web
+    ports:
+      - 9200:4200

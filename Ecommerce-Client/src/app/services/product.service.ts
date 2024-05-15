@@ -10,14 +10,14 @@ export class ProductService {
   constructor(private http:HttpClient) { }
 
   getProducts(){
-    return this.http.get<Product[]>("http://localhost:5087/api/Product/all")
+    return this.http.get<Product[]>("http://localhost:9100/api/Product/all")
   }
 
   getFactorial(){
-    return this.http.get<ProductWithFactorial[]>("http://localhost:5087/api/Product/factorial")
+    return this.http.get<ProductWithFactorial[]>("http://localhost:9100/api/Product/factorial")
   }
 
   createProduct(product:Product){
-    return this.http.post<Product>("http://localhost:5087/api/Product", product)
+    return this.http.post<Product>("http://localhost:9100/api/Product", product)
   }
 }
