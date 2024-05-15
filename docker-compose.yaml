@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.4'
 
 services:
 
@@ -17,4 +17,4 @@ services:
       context: ./Ecommerce-Client
     container_name: product-list-web
     ports:
-      - 9200:4200
+      - 4200:4200
