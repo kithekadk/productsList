@@ -42,7 +42,7 @@ namespace product_Crud_Dotnet.Controllers
                     Description = product.Description,
                     ImageUrl = product.ImageUrl,
                     Price = product.Price,
-                    Row = index
+                    Row = index + 1
                 });
             var productFactorials = new ConcurrentBag<ProductFactorialDto>();
 
