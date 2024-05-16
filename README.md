@@ -1,3 +1,17 @@
+## HOW TO RUN WITH DOCKER
+Ensure docker desktop is opened
+
+Clone the project
+
+Run `docker compose up`
+
+- The API uses port 9100 while the client runs on port 4200
+- Incase you change any, update the services in the client side to enable requests
+
+
+
+### RUNNING LOCALLY WITHOUT DOCKER
+
 Install dotnet sdk using `https://dotnet.microsoft.com/en-us/download`
 
 Install ef core tools needed for database migrations using `dotnet tool install --global dotnet-ef`
