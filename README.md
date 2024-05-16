@@ -6,8 +6,8 @@ Clone the project
 Run `docker compose up`
 
 - The API uses port 9100 while the client runs on port 4200
-- Incase you change any, update the services in the client side to enable requests
-
+- Incase you change the api port on the compose file, update the services in the client side to enable requests
+  - Then build the images again using `docker compose build product-list-api` then `docker compose build product-list-web`
 
 
 ### RUNNING LOCALLY WITHOUT DOCKER
